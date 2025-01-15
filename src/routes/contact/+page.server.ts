@@ -7,7 +7,7 @@ import { fail } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
 
 export const actions = {
-	default: async ({ request }) => {
+	sendEmail: async ({ request }) => {
 		try {
 			const data = await request.formData();
 			const name = data.get('name')?.toString();
@@ -15,21 +15,21 @@ export const actions = {
 			const subject = data.get('subject')?.toString();
 			const reason = data.get('reason')?.toString();
 			const message = data.get('message')?.toString();
-
-			if (subject) {
-				// Honeypot
-				return {
-					status: 200,
-					body: {
-						message: 'Email sent successfully'
-					}
-				};
-			}
+			// if (subject) {
+			// 	// Honeypot
+			// 	return {
+			// 		status: 200,
+			// 		body: {
+			// 			message: 'Email sent successfully'
+			// 		}
+			// 	};
+			// }
 
 			// Create a transporter object using the nodemailer library
 			const transporter = nodemailer.createTransport({
-				host: 'smtp.fastmail.com',
-				port: 465,
+				service: 'Gmail',
+				host: 'smtp.gmail.com',
+				port: 587,
 				secure: true,
 				auth: {
 					user: EMAIL_APP_USER,
@@ -44,7 +44,6 @@ export const actions = {
 				subject: reason,
 				text: message
 			};
-			console.log(mail_options);
 			// Send email
 			const info = await transporter.sendMail(mail_options);
 

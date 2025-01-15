@@ -5,7 +5,7 @@
 
 <form
 	method="POST"
-	action="/contact"
+	action="/contact?/sendEmail"
 	enctype="multipart/form-data"
 	use:enhance={() => {
 		return ({ update, result }) => {
@@ -40,7 +40,13 @@
 		class="input"
 	/>
 	<!-- honeypot, the value should be empty -->
-	<input type="text" name="subject" id="subject" class="hidden" value="speak"/>
+	<input
+		type="text"
+		name="subject"
+		id="subject"
+		class="hidden"
+		value="speak"
+	/>
 	<label for="reason" class="label">
 		<span class="label-text">Reason</span>
 	</label>
