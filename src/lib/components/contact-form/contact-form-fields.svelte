@@ -72,7 +72,7 @@
 		placeholder="Hey! I'd love to talk about..."
 		required
 		class="textarea"
-	/>
+	></textarea>
 	<button type="submit" class="btn btn-secondary mt-10">Submit</button
 	>
 </form>
