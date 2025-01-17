@@ -27,10 +27,9 @@ export const actions = {
 
 			// Create a transporter object using the nodemailer library
 			const transporter = nodemailer.createTransport({
-				service: 'Gmail',
 				host: 'smtp.gmail.com',
 				port: 587,
-				secure: true,
+				secure: false,
 				auth: {
 					user: EMAIL_APP_USER,
 					pass: EMAIL_APP_PASSWORD
@@ -42,7 +41,7 @@ export const actions = {
 				from: `"${name}" <${email}>`,
 				to: EMAIL_APP_TO_ADDRESS,
 				subject: reason,
-				text: message
+				text: message,
 			};
 			// Send email
 			const info = await transporter.sendMail(mail_options);
