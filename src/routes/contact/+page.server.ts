@@ -1,7 +1,8 @@
 import {
 	EMAIL_APP_PASSWORD,
 	EMAIL_APP_TO_ADDRESS,
-	EMAIL_APP_USER
+	EMAIL_APP_USER,
+	EMAIL_AUTH_ACCESS_TOKEN
 } from '$env/static/private';
 import { fail } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
@@ -28,11 +29,12 @@ export const actions = {
 			// Create a transporter object using the nodemailer library
 			const transporter = nodemailer.createTransport({
 				host: 'smtp.gmail.com',
-				port: 587,
-				secure: false,
+				port: 465,
+				secure: true,
 				auth: {
+					type: 'OAuth2',
 					user: EMAIL_APP_USER,
-					pass: EMAIL_APP_PASSWORD
+					accessToken: EMAIL_AUTH_ACCESS_TOKEN,
 				}
 			});
 
